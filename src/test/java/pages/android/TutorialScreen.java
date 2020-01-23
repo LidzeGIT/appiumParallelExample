@@ -1,6 +1,7 @@
 package pages.android;
 
 import io.appium.java_client.android.AndroidDriver;
+import org.openqa.selenium.By;
 import stepdefs.MainMethods;
 
 public class TutorialScreen extends MainMethods {
@@ -10,7 +11,7 @@ public class TutorialScreen extends MainMethods {
     }
 
     //below is lying xpath
-
+    //todo это что за подход?
     private static final String
             ok_button = "id:com.allgoritm.youla:id/ok",
             email_field = "xpath://*[@resource-id = 'field_email']",
@@ -23,6 +24,7 @@ public class TutorialScreen extends MainMethods {
             menu_button = "id:com.allgoritm.youla:id/menu_profile",
             setting_row = "id:com.allgoritm.youla:id/settings_row",
             username = "id:com.allgoritm.youla:id/user_name_tv";
+    By el = By.xpath("");
 
     public void clickOkButton() {
         waitForElementAndClick(

@@ -31,6 +31,7 @@ public class MainMethods {
         return wait.until(ExpectedConditions.presenceOfElementLocated(by));
     }
 
+    //todo два раза одна и та же работа, нужно в пейдже сразу инитить  "By"
     public By getLocatorByString(String locator_with_type) {
         String[] exploded_locator = locator_with_type.split(Pattern.quote(":"), 2);
         String by_type = exploded_locator[0];
@@ -40,7 +41,7 @@ public class MainMethods {
             case "xpath":
                 return By.xpath(locator);
             case "id":
-                return By.id((locator));
+                return By.id(locator);
             case "css":
                 return By.cssSelector((locator));
             default:
@@ -48,13 +49,14 @@ public class MainMethods {
         }
     }
 
-    public WebElement waitForElementPresent(String locator, String error_message)
-    {
-        return waitForElementPresent(locator, error_message,5);
-    }
+//    public WebElement waitForElementPresent(String locator, String error_message)
+//    {
+//        return waitForElementPresent(locator, error_message,5);
+//    }
 
     public int getAmountOfElements(String locator) {
         By by = this.getLocatorByString(locator);
+        //todo почему явное приведение типа?
         List elements = driver.findElements(by);
         return elements.size();
     }
@@ -78,11 +80,14 @@ public class MainMethods {
         return element;
     }
 
+    //todo депрекейтид методы?
     public void swipeUp(int timeOfSwipe) {
         if (driver instanceof AppiumDriver) {
+        //todo 3 явных приведения типа =( ?
             TouchAction action = new TouchAction((AppiumDriver) driver);
             Dimension size = driver.manage().window().getSize();
             int x = size.width / 2;
+            //todo откуда эти магические числа?
             int start_y = (int) (size.height * 0.8);
             int end_y = (int) (size.height * 0.2);
             action
@@ -133,6 +138,7 @@ public class MainMethods {
             counter++;
             TouchAction action = new TouchAction((AppiumDriver) driver);
             Core core = new Core();
+            //todo это что за жесть?
             if (core.isAndroid()) {
                 action.press(right_x, middle_y);
                 action.waitAction(Duration.ofMillis(300));
@@ -140,6 +146,8 @@ public class MainMethods {
             } else {
                 action.press(middle_x, middle_y);
                 action.waitAction(Duration.ofMillis(300));
+                //todo а это?
+                //я про -1
                 int offset_x = (-1 * element.getSize().getWidth());
                 action.moveTo(offset_x, 0);
             }

@@ -14,6 +14,7 @@
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/io.appium/java-client -->
+        <!--        //todo бета????-->
         <dependency>
             <groupId>io.appium</groupId>
             <artifactId>java-client</artifactId>
@@ -39,10 +40,10 @@
 
     <build>
         <plugins>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
+                <!--        //todo это два раза обьявлено????-->
                 <version>2.22.1</version>
                 <configuration>
                     <suiteXmlFiles>
@@ -83,6 +84,7 @@
     </build>
 
     <reporting>
+        <!--        //todo что это делает????-->
         <excludeDefaults>true</excludeDefaults>
         <plugins>
         </plugins>

@@ -54,6 +54,8 @@ public class Core {
             String apk = "apks/com.allgoritm.youla.apk";
             File f = new File(".");
             String[] list = f.list();
+            //это че блин такое?
+            //todo
             for (String file : list) {
                 if (file.contains("com") && file.contains("allgoritm") && file.contains("youla") && file.contains(".apk")) {
                     apk = file;
@@ -68,6 +70,7 @@ public class Core {
             capabilities.setCapability("clearSystemFiles", "true");
 
             System.out.println(new File(".").getAbsolutePath());
+            //todo почему явное приведение типа?
             driver = new AndroidDriver(new URL(URL), capabilities);
         } else if (this.isIOS()) {
             DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -86,6 +89,8 @@ public class Core {
             String app = "apks/123.app";
             File f = new File(".");
             String[] list = f.list();
+            //а это зачем?
+            //todo
             for (String file : list) {
                 if (file.contains("123") && file.contains(".app")) {
                     app = file;
@@ -96,12 +101,15 @@ public class Core {
             capabilities.setCapability("app", path);
             System.out.println(path);
             capabilities.setCapability("fullReset", "false");
+            //todo почему явное приведение ттипа?
             driver = new IOSDriver(new URL(URL), capabilities);
             ((IOSDriver) driver).unlockDevice();
         }
     }
 
     @AfterMethod
+    //почему метод synchronized?
+    //todo
     public synchronized void teardown() {
         if (driver != null) {
             driver.quit();
