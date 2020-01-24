@@ -13,7 +13,7 @@ public class SkipTestsAndroid extends Core {
         //todo депрекейтид методы?
         AndroidDriver driver = (AndroidDriver) this.driver;
 
-        TutorialScreen tutorialScreen = new TutorialScreen(driver);
+        TutorialScreen tutorialScreen = new TutorialScreen();
         tutorialScreen.clickOkButton();
         tutorialScreen.fillEmailField();
         tutorialScreen.fillPasswordField();
