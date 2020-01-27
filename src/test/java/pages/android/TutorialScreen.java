@@ -5,11 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import stepdefs.MainMethods;
 
-public class TutorialScreen extends MainMethods {
-
-    public TutorialScreen(RemoteWebDriver driver) {
-        super(driver);
-    }
+public class TutorialScreen {
 
     By ok_button = By.id("com.allgoritm.youla:id/ok");
     By email_field = By.xpath("//*[@resource-id = 'field_email']");
@@ -23,19 +19,21 @@ public class TutorialScreen extends MainMethods {
     By setting_row = By.id("com.allgoritm.youla:id/settings_row");
     By username = By.id("com.allgoritm.youla:id/user_name_tv");
 
+    MainMethods main = new MainMethods();
+
     public void clickOkButton() {
-        waitForElementAndClick(
+        main.waitForElementAndClick(
                 ok_button,
                 "Couldn't find ok button",
                 5);
 
     }
     public void fillEmailField() {
-        waitForElementAndClick(
+        main.waitForElementAndClick(
                 email_field,
                 "Couldn't find email_field",
                 5);
-        waitForElementAndSendKeys(
+        main.waitForElementAndSendKeys(
                 email_field,
                 "1234",
                 "Couldn't fill email_field",
@@ -43,11 +41,11 @@ public class TutorialScreen extends MainMethods {
     }
 
     public void fillPasswordField() {
-        waitForElementAndClick(
+        main.waitForElementAndClick(
                 pass_field,
                 "Couldn't find pass_field",
                 5);
-        waitForElementAndSendKeys(
+        main.waitForElementAndSendKeys(
                 pass_field,
                 "12345",
                 "Couldn't fill pass_field",
@@ -55,7 +53,7 @@ public class TutorialScreen extends MainMethods {
     }
 
     public void clickSignInButton() {
-        waitForElementAndClick(
+        main.waitForElementAndClick(
                 sighIn_button,
                 "Couldn't find sign in button",
                 5);

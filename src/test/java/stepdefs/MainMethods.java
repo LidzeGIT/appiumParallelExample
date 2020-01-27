@@ -1,30 +1,56 @@
 package stepdefs;
 
-import driver.Core;
+import driver.androidDriver;
+import driver.iosDriver;
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileDriver;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.offset.PointOption;
+import org.aspectj.lang.annotation.Before;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.TestNG;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 
-import java.time.Duration;
 import java.util.List;
-import java.util.regex.Pattern;
 
-public class MainMethods {
+public class MainMethods extends TestNG {
 
-    public RemoteWebDriver driver;
+    private WebDriver driver;
+    private static final String PLATFORM_IOS = "ios";
+    private static final String PLATFORM_Android = "android";
 
-    public MainMethods(RemoteWebDriver driver) {
-        this.driver = driver;
+    public String getPlatformVar() {
+        return System.getenv("platform");
     }
 
+    private boolean isPlatform(String my_platform) {
+        String platform = this.getPlatformVar();
+        return my_platform.equals(platform);
+    }
 
+    public boolean isAndroid() {
+        return isPlatform(PLATFORM_Android);
+    }
+
+    public boolean isIOS() {
+        return isPlatform(PLATFORM_IOS);
+    }
+
+    @Before("")
+    public void setupDriver() {
+
+        if (isAndroid()) {
+            this.driver = new androidDriver().getDriver();
+        } else if (isIOS()) {
+            this.driver = new iosDriver().getDriver();
+        }
+    }
 
     public WebElement waitForElementPresent(By element, String error_message, long timeOutInSeconds) {
         WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
